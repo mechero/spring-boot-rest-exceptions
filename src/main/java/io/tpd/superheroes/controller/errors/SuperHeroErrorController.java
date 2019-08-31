@@ -1,5 +1,6 @@
 package io.tpd.superheroes.controller.errors;
 
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.autoconfigure.web.servlet.error.AbstractErrorController;
 import org.springframework.boot.web.servlet.error.ErrorAttributes;
 import org.springframework.http.HttpStatus;
@@ -11,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.Collections;
 import java.util.Map;
 
+@ConditionalOnProperty(name = "superheroes.errorhandling", havingValue = "true")
 @RestController
 @RequestMapping({SuperHeroErrorController.ERROR_PATH})
 public class SuperHeroErrorController extends AbstractErrorController {

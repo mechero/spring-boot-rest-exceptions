@@ -3,6 +3,7 @@ package io.tpd.superheroes.controller;
 import io.tpd.superheroes.controller.errors.SuperHeroAppError;
 import io.tpd.superheroes.exceptions.NonExistingHeroException;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -15,8 +16,9 @@ import javax.servlet.http.HttpServletRequest;
  *
  * @author moises.macero
  */
+@ConditionalOnProperty(name = "superheroes.errorhandling", havingValue = "true")
 @RestControllerAdvice
-public class SuperHeroExceptionHandler {
+public class SuperHeroControllerAdvice {
 
     @Value("${superheroes.sendreport.uri}")
     private String sendReportUri;
