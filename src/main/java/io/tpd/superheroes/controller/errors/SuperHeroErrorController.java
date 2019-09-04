@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.Collections;
 import java.util.Map;
 
-@ConditionalOnProperty(name = "superheroes.errorhandling", havingValue = "true")
+@ConditionalOnProperty(name = "superheroes.errors.controller", havingValue = "true")
 @RestController
 @RequestMapping({SuperHeroErrorController.ERROR_PATH})
 public class SuperHeroErrorController extends AbstractErrorController {

@@ -8,6 +8,11 @@ import io.tpd.superheroes.controller.errors.ErrorCode;
  * @author moises.macero
  */
 public class NonExistingHeroException extends RuntimeException implements ErrorCode {
+
+    public NonExistingHeroException(final String message) {
+        super(message);
+    }
+
     @Override
     public String getErrorCode() {
         return "NE-001";

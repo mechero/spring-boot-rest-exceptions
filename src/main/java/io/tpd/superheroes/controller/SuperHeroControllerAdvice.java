@@ -16,18 +16,21 @@ import javax.servlet.http.HttpServletRequest;
  *
  * @author moises.macero
  */
-@ConditionalOnProperty(name = "superheroes.errorhandling", havingValue = "true")
+@ConditionalOnProperty(name = "superheroes.errors.controlleradvice", havingValue = "true")
 @RestControllerAdvice
 public class SuperHeroControllerAdvice {
 
     @Value("${superheroes.sendreport.uri}")
     private String sendReportUri;
+    @Value("${superheroes.api.version}")
+    private String currentApiVersion;
 
     @ExceptionHandler(NonExistingHeroException.class)
     public ResponseEntity<SuperHeroAppError> handleNonExistingHero(HttpServletRequest request,
                                                                    NonExistingHeroException ex) {
         final SuperHeroAppError error = new SuperHeroAppError(
-                ex.getErrorCode(),
+                currentApiVersion,
+                Integer.toString(HttpStatus.NOT_FOUND.value()),
                 "This superhero is hiding in the cave",
                 "superhero-exceptions",
                 "You can't find this superhero right now. Try later.",

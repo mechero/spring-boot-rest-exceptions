@@ -3,7 +3,6 @@ package io.tpd.superheroes.controller.errors;
 import org.springframework.boot.web.servlet.error.DefaultErrorAttributes;
 import org.springframework.web.context.request.WebRequest;
 
-import java.util.HashMap;
 import java.util.Map;
 
 class SuperHeroAppErrorAttributes extends DefaultErrorAttributes {
@@ -18,9 +17,9 @@ class SuperHeroAppErrorAttributes extends DefaultErrorAttributes {
     @Override
     public Map<String, Object> getErrorAttributes(final WebRequest webRequest, final boolean includeStackTrace) {
         final Map<String, Object> defaultErrorAttributes = super.getErrorAttributes(webRequest, false);
-        final Map<String, Object> customErrorAttributes = new HashMap<>();
-        customErrorAttributes.put("api_version", currentApiVersion);
-        customErrorAttributes.put("error", SuperHeroAppError.fromAttributeMap(defaultErrorAttributes, sendReportUri));
-        return customErrorAttributes;
+        final SuperHeroAppError superHeroAppError = SuperHeroAppError.fromDefaultAttributeMap(
+                currentApiVersion, defaultErrorAttributes, sendReportUri
+        );
+        return superHeroAppError.toAttributeMap();
     }
 }

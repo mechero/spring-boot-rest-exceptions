@@ -28,7 +28,7 @@ class SuperHeroRepositoryImpl implements SuperHeroRepository {
 
     @Override
     public SuperHero getSuperHero(int id) {
-        if (id > superHeroList.size()) throw new NonExistingHeroException();
+        if (id > superHeroList.size()) throw new NonExistingHeroException("Sorry, there are only 4 superheroes...");
         return superHeroList.get(id - 1);
     }
 
