@@ -30,7 +30,7 @@ public class SuperHeroControllerAdvice {
                                                                    NonExistingHeroException ex) {
         final SuperHeroAppError error = new SuperHeroAppError(
                 currentApiVersion,
-                Integer.toString(HttpStatus.NOT_FOUND.value()),
+                ex.getErrorCode(),
                 "This superhero is hiding in the cave",
                 "superhero-exceptions",
                 "You can't find this superhero right now. Try later.",
